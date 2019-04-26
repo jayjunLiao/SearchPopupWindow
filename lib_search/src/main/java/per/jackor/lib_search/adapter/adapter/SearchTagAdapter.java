@@ -10,11 +10,6 @@ import java.util.List;
 
 import per.jackor.lib_search.R;
 
-/**
- * Created by Jackor on 2019/4/25.
- * Email: jackor.liao@foxmail.com
- * Description:
- */
 public class SearchTagAdapter extends RecyclerView.Adapter<SearchTagAdapter.CustomViewHolder> {
     private List<String> mTagList;
     private int mTextSize;

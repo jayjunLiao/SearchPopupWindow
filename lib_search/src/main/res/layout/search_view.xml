@@ -20,9 +20,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/edit_query"
         app:layout_constraintBottom_toBottomOf="@id/edit_query"
-        android:text="搜索"
+        android:text="@string/search"
         android:textSize="18sp"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints" />
@@ -35,7 +35,7 @@
         android:padding="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:hint="输入搜索内容"
+        android:hint="@string/search_hint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints" />
@@ -48,9 +48,9 @@
         tools:ignore="MissingConstraints">
         <TextView
             android:layout_marginTop="20dp"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="15dp"
-            android:text="历史搜索"
+            android:text="@string/search_history"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,9 +78,9 @@
         android:id="@+id/hot"
         app:layout_constraintTop_toBottomOf="@id/history_content"
         android:layout_marginTop="20dp"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="15dp"
-        android:text="热门搜索"
+        android:text="@string/search_hot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints" />

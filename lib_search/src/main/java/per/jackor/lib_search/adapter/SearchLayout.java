@@ -174,6 +174,10 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
         search.setOnClickListener(this);
     }
 
+    /**
+     * Flexbox流式布局设置
+     * @param recyclerView
+     */
     private void flexboxConfig(RecyclerView recyclerView){
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(mContext);
         layoutManager.setFlexWrap(FlexWrap.WRAP);
@@ -185,10 +189,18 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
         recyclerView.setLayoutManager(layoutManager);
     }
 
+    /**
+     * 设置item间距
+     * @param gapWidth
+     */
     public void setItemGapWidth(int gapWidth) {
         this.mItemGapWidth = gapWidth;
     }
 
+    /**
+     * popupWindow背景色
+     * @param colorStr
+     */
     public void setBackgroundColor(String colorStr) {
         this.mBgColor = Color.parseColor(colorStr);
     }
@@ -205,6 +217,10 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
         this.height = height;
     }
 
+    /**
+     * 设置标签字体大小
+     * @param textSize
+     */
     public void setTextSize(int textSize) {
         this.mTextSize = textSize;
     }
