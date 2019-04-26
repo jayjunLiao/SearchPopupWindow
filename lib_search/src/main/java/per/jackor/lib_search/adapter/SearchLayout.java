@@ -61,7 +61,7 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
 
     private OnSearchClickListener mOnSearchClickListener;
 
-    interface OnSearchClickListener{
+    public interface OnSearchClickListener{
         void onSearchClick(String searchContent);
     }
     public SearchLayout(Context context) {
