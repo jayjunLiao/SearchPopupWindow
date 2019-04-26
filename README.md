@@ -7,9 +7,9 @@
 
 然后在app的gradle中导入
 
-	implementation 'com.github.jayjunLiao:SearchPopupWindow:1.0.1'
+	implementation 'com.github.jayjunLiao:SearchPopupWindow:1.0.2'
 
-####使用：
+#### 使用：
 
 	SearchLayout searchLayout = new SearchLayout(this);
 	searchLayout.pop(pupupWindow依赖的view,历史搜索数据源，热门搜索数据源);
