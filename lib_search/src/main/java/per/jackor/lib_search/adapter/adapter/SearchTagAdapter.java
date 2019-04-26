@@ -1,4 +1,4 @@
-package per.jackor.lib_search.adapter;
+package per.jackor.lib_search.adapter.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

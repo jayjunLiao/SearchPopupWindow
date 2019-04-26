@@ -1,4 +1,4 @@
-package com.jackor.searchpopupdemo;
+package per.jackor.lib_search.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -21,13 +21,14 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
-import com.jackor.searchpopupdemo.adapter.SearchTagAdapter;
-import com.jackor.searchpopupdemo.util.DensityUtil;
-import com.jackor.searchpopupdemo.widget.RecyclerViewItemDecoration;
-import com.jackor.searchpopupdemo.widget.SupportPopupWindow;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import per.jackor.lib_search.R;
+import per.jackor.lib_search.adapter.adapter.SearchTagAdapter;
+import per.jackor.lib_search.adapter.util.DensityUtil;
+import per.jackor.lib_search.adapter.widget.RecyclerViewItemDecoration;
+import per.jackor.lib_search.adapter.widget.SupportPopupWindow;
 
 /**
  * Created by Jackor on 2019/4/25.
@@ -235,25 +236,25 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back:
-                mPopupWindow.dismiss();
-                break;
-            case R.id.clear_history:
-                mHistoryList.clear();
-                mHistoryAdapter.notifyDataChanged();
-                setHeaderVisibility(View.GONE, HEADER_HISTORY);
-                break;
-            case R.id.search:
-                Editable editQueryable = mEditQuery.getText();
-                String editQueryText = "";
-                if (editQueryable != null) {
-                    editQueryText = editQueryable.toString();
-                }
-                mOnSearchClickListener.onSearchClick(editQueryText);
-                mEditQuery.setText("");
-                mPopupWindow.dismiss();
-                break;
+        int i = v.getId();
+        if (i == R.id.back) {
+            mPopupWindow.dismiss();
+
+        } else if (i == R.id.clear_history) {
+            mHistoryList.clear();
+            mHistoryAdapter.notifyDataChanged();
+            setHeaderVisibility(View.GONE, HEADER_HISTORY);
+
+        } else if (i == R.id.search) {
+            Editable editQueryable = mEditQuery.getText();
+            String editQueryText = "";
+            if (editQueryable != null) {
+                editQueryText = editQueryable.toString();
+            }
+            mOnSearchClickListener.onSearchClick(editQueryText);
+            mEditQuery.setText("");
+            mPopupWindow.dismiss();
+
         }
     }
 

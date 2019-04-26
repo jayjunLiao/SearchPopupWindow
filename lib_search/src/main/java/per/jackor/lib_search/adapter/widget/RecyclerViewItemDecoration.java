@@ -1,4 +1,4 @@
-package com.jackor.searchpopupdemo.widget;
+package per.jackor.lib_search.adapter.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

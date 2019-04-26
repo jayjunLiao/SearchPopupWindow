@@ -1,4 +1,4 @@
-package com.jackor.searchpopupdemo.util;
+package per.jackor.lib_search.adapter.util;
 
 import android.content.Context;
 
