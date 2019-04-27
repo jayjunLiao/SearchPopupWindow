@@ -7,7 +7,7 @@
 
 然后在app的gradle中导入
 
-	implementation 'com.github.jayjunLiao:SearchPopupWindow:1.0.2'
+	implementation 'com.github.jayjunLiao:SearchPopupWindow:1.0.3'
 
 #### 使用：
 

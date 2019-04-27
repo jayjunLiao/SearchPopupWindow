@@ -1,9 +1,11 @@
 package per.jackor.lib_search.adapter;
 
+import android.app.Service;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -11,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -21,6 +24,7 @@ import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +64,8 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
     private EditText mEditQuery;
 
     private OnSearchClickListener mOnSearchClickListener;
+    private Handler mHandler = new Handler();
+    private int mAnimationStyle;
 
     public interface OnSearchClickListener{
         void onSearchClick(String searchContent);
@@ -104,7 +110,8 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
             mPopupWindow.update();
             mPopupWindow.showAtLocation(locationView, Gravity.CENTER, 0,0);
         }
-
+        // 解决edittext获取焦点但不弹出软键盘问题
+        popupInputMethodWindow();
     }
 
     public void setOnSearchClickListener(OnSearchClickListener searchClickListener) {
@@ -157,6 +164,9 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
         mPopupWindow = new SupportPopupWindow(pupView, width, height);
         if (mBgColor == 0) {
             mBgColor = ContextCompat.getColor(mContext, R.color.write);
+        }
+        if (mAnimationStyle != 0) {
+            mPopupWindow.setAnimationStyle(mAnimationStyle);
         }
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(mBgColor));
         // 设置可以获取焦点
@@ -217,6 +227,10 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
         this.height = height;
     }
 
+    public void setAnimationStyle(int animationStyle) {
+        this.mAnimationStyle = animationStyle;
+    }
+
     /**
      * 设置标签字体大小
      * @param textSize
@@ -273,6 +287,15 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
 
         }
     }
-
+    // 弹出软键盘
+    private void popupInputMethodWindow() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Service.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }, 0);
+    }
 
 }
