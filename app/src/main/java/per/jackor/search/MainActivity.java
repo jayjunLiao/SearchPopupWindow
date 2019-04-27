@@ -29,4 +29,5 @@ public class MainActivity extends AppCompatActivity implements SearchLayout.OnSe
     public void onSearchClick(String searchContent) {
         Toast.makeText(this, searchContent, Toast.LENGTH_SHORT).show();
     }
+
 }

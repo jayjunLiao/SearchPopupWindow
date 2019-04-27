@@ -281,7 +281,8 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
             if (editQueryable != null) {
                 editQueryText = editQueryable.toString();
             }
-            mOnSearchClickListener.onSearchClick(editQueryText);
+            if (mOnSearchClickListener != null)
+                mOnSearchClickListener.onSearchClick(editQueryText);
             mEditQuery.setText("");
             mPopupWindow.dismiss();
 
