@@ -1,7 +1,9 @@
 package per.jackor.lib_search.adapter;
 
+import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -34,11 +36,6 @@ import per.jackor.lib_search.adapter.util.DensityUtil;
 import per.jackor.lib_search.adapter.widget.RecyclerViewItemDecoration;
 import per.jackor.lib_search.adapter.widget.SupportPopupWindow;
 
-/**
- * Created by Jackor on 2019/4/25.
- * Email: jackor.liao@foxmail.com
- * Description:
- */
 public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnItemClickListener {
     public static final int HEADER_HISTORY = 0x01;
     public static final int HEADER_HOT = 0x0;
@@ -66,6 +63,7 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
     private OnSearchClickListener mOnSearchClickListener;
     private Handler mHandler = new Handler();
     private int mAnimationStyle;
+    private AlertDialog.Builder mSelectClearDialog;
 
     public interface OnSearchClickListener{
         void onSearchClick(String searchContent);
@@ -176,6 +174,8 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
         // 更新popupwindow的状态
         mPopupWindow.update();
         mPopupWindow.showAtLocation(locationView, Gravity.CENTER, 0,0);
+        // 清楚历史纪录确认框
+        mSelectClearDialog = new AlertDialog.Builder(mContext);
 
         mHistoryAdapter.setOnItemClickListener(this);
         mHotAdapter.setOnItemClickListener(this);
@@ -271,9 +271,22 @@ public class SearchLayout implements View.OnClickListener, SearchTagAdapter.OnIt
             mPopupWindow.dismiss();
 
         } else if (i == R.id.clear_history) {
-            mHistoryList.clear();
-            mHistoryAdapter.notifyDataChanged();
-            setHeaderVisibility(View.GONE, HEADER_HISTORY);
+           mSelectClearDialog.setMessage("是否清除历史纪录？")
+                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mHistoryList.clear();
+                            mHistoryAdapter.notifyDataChanged();
+                            setHeaderVisibility(View.GONE, HEADER_HISTORY);
+                        }
+                    })
+                    .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    }).show();
+
 
         } else if (i == R.id.search) {
             Editable editQueryable = mEditQuery.getText();
